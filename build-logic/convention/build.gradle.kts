@@ -7,13 +7,13 @@ plugins {
 group = "github.leavesczy.compose_chat.build.logic"
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_18
-    targetCompatibility = JavaVersion.VERSION_18
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
 }
 
 kotlin {
     compilerOptions {
-        jvmTarget = JvmTarget.JVM_18
+        jvmTarget = JvmTarget.JVM_21
     }
 }
 

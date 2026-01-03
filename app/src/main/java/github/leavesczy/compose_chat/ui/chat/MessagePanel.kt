@@ -123,7 +123,7 @@ fun MessagePanel(pageViewState: ChatPageViewState, chatPageAction: ChatPageActio
                                 )
                             }
 
-                            else -> {
+                            is TimeMessage, is SystemMessage -> {
                                 throw IllegalArgumentException()
                             }
                         }

@@ -202,10 +202,6 @@ fun ChatPageBottomBar(chatViewModel: ChatViewModel) {
                                 )
                             }
                         }
-
-                        else -> {
-
-                        }
                     }
                 }
             }
