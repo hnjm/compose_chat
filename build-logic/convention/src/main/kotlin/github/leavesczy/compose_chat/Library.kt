@@ -1,8 +1,6 @@
 package github.leavesczy.compose_chat
 
-import com.android.build.api.dsl.CommonExtension
-import com.android.build.gradle.internal.dsl.LibraryExtensionImpl
-import org.gradle.api.Project
+import com.android.build.api.dsl.LibraryExtension
 import java.io.File
 
 /**
@@ -10,9 +8,8 @@ import java.io.File
  * @Date: 2023/11/29 16:10
  * @Desc:
  */
-internal fun Project.configureAndroidLibrary(commonExtension: CommonExtension) {
-    commonExtension.apply {
-        this as LibraryExtensionImpl
+internal fun configureAndroidLibrary(libraryExtension: LibraryExtension) {
+    libraryExtension.apply {
         defaultConfig {
             consumerProguardFiles.add(File("consumer-rules.pro"))
         }

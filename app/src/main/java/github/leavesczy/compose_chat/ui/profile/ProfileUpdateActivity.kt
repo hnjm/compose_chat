@@ -53,8 +53,8 @@ private fun ProfileUpdatePage(pageViewStata: ProfileUpdatePageViewStata) {
     ) { innerPadding ->
         Box(
             modifier = Modifier
-                .fillMaxSize()
                 .padding(paddingValues = innerPadding)
+                .fillMaxSize()
                 .verticalScroll(state = rememberScrollState())
         ) {
             val personProfile = pageViewStata.personProfile

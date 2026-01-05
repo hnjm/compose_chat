@@ -101,8 +101,8 @@ private fun LoginPage(
     ) { innerPadding ->
         Box(
             modifier = Modifier
-                .fillMaxSize()
                 .padding(paddingValues = innerPadding)
+                .fillMaxSize()
         ) {
             val localSoftwareKeyboardController = LocalSoftwareKeyboardController.current
             val context = LocalContext.current

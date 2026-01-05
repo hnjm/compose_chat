@@ -27,7 +27,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBackIosNew
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -64,7 +63,9 @@ import github.leavesczy.compose_chat.ui.friend.FriendProfileActivity
 import github.leavesczy.compose_chat.ui.preview.PreviewImageActivity
 import github.leavesczy.compose_chat.ui.theme.ComposeChatTheme
 import github.leavesczy.compose_chat.ui.widgets.AnimateBouncyImage
+import github.leavesczy.compose_chat.ui.widgets.BezierImage
 import github.leavesczy.compose_chat.ui.widgets.ComponentImage
+import github.leavesczy.compose_chat.ui.widgets.ComposeDropdownMenuItem
 import github.leavesczy.compose_chat.ui.widgets.LoadingDialog
 import github.leavesczy.compose_chat.utils.randomImage
 import kotlinx.coroutines.launch
@@ -178,14 +179,14 @@ private fun GroupProfilePage(
         ) { innerPadding ->
             Box(
                 modifier = Modifier
-                    .fillMaxSize()
                     .padding(paddingValues = innerPadding)
+                    .fillMaxSize()
             ) {
                 LazyColumn(
                     modifier = Modifier
                         .fillMaxSize(),
                     state = listState,
-                    contentPadding = PaddingValues(bottom = 30.dp),
+                    contentPadding = PaddingValues(bottom = 30.dp)
                 ) {
                     item(
                         key = "header",
@@ -231,8 +232,8 @@ private fun GroupHeader(groupProfile: GroupProfile) {
         val context = LocalContext.current
         val avatarUrl = groupProfile.faceUrl
         val introduction =
-            "groupID: ${groupProfile.id}\ncreateTime: ${groupProfile.createTimeFormat}\n${groupProfile.introduction}"
-        ComponentImage(
+            "groupId: ${groupProfile.id}\ncreateTime: ${groupProfile.createTimeFormat}\n${groupProfile.introduction}"
+        BezierImage(
             modifier = Modifier
                 .fillMaxSize()
                 .scrim(color = ComposeChatTheme.colorScheme.c_33000000_33000000.color),
@@ -347,29 +348,17 @@ private fun PageTopBar(
                 menuExpanded = false
             }
         ) {
-            DropdownMenuItem(
-                text = {
-                    Text(
-                        text = "修改头像",
-                        fontSize = 18.sp,
-                        lineHeight = 18.sp,
-                        color = ComposeChatTheme.colorScheme.c_FF001018_DEFFFFFF.color
-                    )
-                },
+            ComposeDropdownMenuItem(
+                modifier = Modifier,
+                text = "修改头像",
                 onClick = {
                     menuExpanded = false
                     action.setAvatar(randomImage())
                 }
             )
-            DropdownMenuItem(
-                text = {
-                    Text(
-                        text = "退出群聊",
-                        fontSize = 18.sp,
-                        lineHeight = 18.sp,
-                        color = ComposeChatTheme.colorScheme.c_FF001018_DEFFFFFF.color
-                    )
-                },
+            ComposeDropdownMenuItem(
+                modifier = Modifier,
+                text = "退出群聊",
                 onClick = {
                     menuExpanded = false
                     action.quitGroup()

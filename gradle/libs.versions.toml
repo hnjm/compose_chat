@@ -18,7 +18,7 @@ junit = "4.13.2"
 coil = "3.3.0"
 tencent-imsdk = "8.8.7359"
 squareup-okHttp = "5.3.2"
-leavesczy-matisse = "2.2.3"
+leavesczy-matisse = "2.3.0"
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "android-plugin" }

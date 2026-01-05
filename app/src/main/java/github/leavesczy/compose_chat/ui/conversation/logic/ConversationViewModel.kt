@@ -33,10 +33,7 @@ class ConversationViewModel : BaseViewModel() {
 
     var pageViewState by mutableStateOf(
         value = ConversationPageViewState(
-            listState = LazyListState(
-                firstVisibleItemIndex = 0,
-                firstVisibleItemScrollOffset = 0
-            ),
+            listState = LazyListState(),
             serverConnectState = ServerConnectState.Idle,
             conversationList = persistentListOf(),
             onClickConversation = ::onClickConversation,

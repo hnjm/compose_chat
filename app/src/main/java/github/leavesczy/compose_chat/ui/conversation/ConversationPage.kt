@@ -18,7 +18,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -40,6 +39,7 @@ import github.leavesczy.compose_chat.extend.scrim
 import github.leavesczy.compose_chat.ui.conversation.logic.ConversationPageViewState
 import github.leavesczy.compose_chat.ui.theme.ComposeChatTheme
 import github.leavesczy.compose_chat.ui.widgets.ComponentImage
+import github.leavesczy.compose_chat.ui.widgets.ComposeDropdownMenuItem
 
 /**
  * @Author: leavesCZY
@@ -52,7 +52,7 @@ fun ConversationPage(pageViewState: ConversationPageViewState) {
         modifier = Modifier
             .fillMaxSize(),
         state = pageViewState.listState,
-        contentPadding = PaddingValues(bottom = 30.dp),
+        contentPadding = PaddingValues(bottom = 30.dp)
     ) {
         item(
             key = "ServerConnectState",
@@ -79,6 +79,8 @@ fun ConversationPage(pageViewState: ConversationPageViewState) {
                 }
             ) {
                 ConversationItem(
+                    modifier = Modifier
+                        .animateItem(),
                     conversation = it,
                     onClickConversation = pageViewState.onClickConversation,
                     deleteConversation = pageViewState.deleteConversation,
@@ -91,6 +93,7 @@ fun ConversationPage(pageViewState: ConversationPageViewState) {
 
 @Composable
 private fun ConversationItem(
+    modifier: Modifier,
     conversation: Conversation,
     onClickConversation: (Conversation) -> Unit,
     deleteConversation: (Conversation) -> Unit,
@@ -100,7 +103,7 @@ private fun ConversationItem(
         mutableStateOf(value = false)
     }
     Box(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .combinedClickable(
                 onClick = {
@@ -260,37 +263,21 @@ private fun MoreActionDropdownMenu(
             expanded = expanded,
             onDismissRequest = onDismissRequest
         ) {
-            DropdownMenuItem(
+            ComposeDropdownMenuItem(
                 modifier = Modifier,
-                text = {
-                    Text(
-                        modifier = Modifier,
-                        text = if (conversation.isPinned) {
-                            "取消置顶"
-                        } else {
-                            "置顶会话"
-                        },
-                        fontSize = 18.sp,
-                        lineHeight = 18.sp,
-                        color = ComposeChatTheme.colorScheme.c_FF001018_DEFFFFFF.color
-                    )
+                text = if (conversation.isPinned) {
+                    "取消置顶"
+                } else {
+                    "置顶会话"
                 },
                 onClick = {
                     onDismissRequest()
                     pinConversation(conversation, !conversation.isPinned)
                 }
             )
-            DropdownMenuItem(
+            ComposeDropdownMenuItem(
                 modifier = Modifier,
-                text = {
-                    Text(
-                        modifier = Modifier,
-                        text = "删除会话",
-                        fontSize = 18.sp,
-                        lineHeight = 18.sp,
-                        color = ComposeChatTheme.colorScheme.c_FF001018_DEFFFFFF.color
-                    )
-                },
+                text = "删除会话",
                 onClick = {
                     onDismissRequest()
                     deleteConversation(conversation)

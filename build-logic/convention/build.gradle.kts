@@ -4,7 +4,7 @@ plugins {
     `kotlin-dsl`
 }
 
-group = "github.leavesczy.compose_chat.build.logic"
+group = "github.leavesczy.compose_chat.buildlogic"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_21

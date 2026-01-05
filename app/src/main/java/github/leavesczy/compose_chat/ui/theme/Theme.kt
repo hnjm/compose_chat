@@ -28,11 +28,11 @@ import github.leavesczy.compose_chat.ui.logic.AppTheme
  * @Github：https://github.com/leavesCZY
  */
 private val lightColorScheme = lightColorScheme(
-    background = Color(0xFFFFFFFF)
+    background = Color(color = 0xFFFFFFFF)
 )
 
 private val darkColorScheme = darkColorScheme(
-    background = Color(0xFF101010)
+    background = Color(color = 0xFF101010)
 )
 
 object ComposeChatTheme {

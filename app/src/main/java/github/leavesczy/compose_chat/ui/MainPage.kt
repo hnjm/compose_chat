@@ -61,8 +61,8 @@ fun MainPage(
             ) { innerPadding ->
                 Box(
                     modifier = Modifier
-                        .fillMaxSize()
                         .padding(paddingValues = innerPadding)
+                        .fillMaxSize()
                 ) {
                     when (mainViewModel.bottomBarViewState.selectedTab) {
                         MainPageTab.Conversation -> {

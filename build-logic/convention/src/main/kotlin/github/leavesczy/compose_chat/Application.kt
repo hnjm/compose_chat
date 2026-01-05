@@ -24,7 +24,9 @@ internal fun Project.configureAndroidApplication(commonExtension: ApplicationExt
             buildConfigField("String", "BUILD_TIME", "\"${getAppBuildTime()}\"")
         }
         val basePluginExtension = project.extensions.getByType(BasePluginExtension::class.java)
-        basePluginExtension.archivesName.set("compose_chat_v${defaultConfig.versionName}_${defaultConfig.versionCode}_${getApkBuildTime()}")
+        basePluginExtension.apply {
+            archivesName.set("compose_chat_v${defaultConfig.versionName}_${defaultConfig.versionCode}_${getApkBuildTime()}")
+        }
         androidResources {
             localeFilters += setOf("zh")
         }

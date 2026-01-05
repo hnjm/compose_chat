@@ -156,8 +156,8 @@ private fun PreviewImagePage(
     ) { innerPadding ->
         Box(
             modifier = Modifier
-                .fillMaxSize()
                 .padding(paddingValues = innerPadding)
+                .fillMaxSize()
         ) {
             HorizontalPager(
                 modifier = Modifier

@@ -1,4 +1,5 @@
 import com.android.build.api.dsl.CommonExtension
+import com.android.build.api.dsl.LibraryExtension
 import github.leavesczy.compose_chat.configureAndroidLibrary
 import github.leavesczy.compose_chat.configureAndroidProject
 import org.gradle.api.Plugin
@@ -18,7 +19,7 @@ class LibraryConventionPlugin : Plugin<Project> {
             apply(plugin = "com.android.library")
             val commonExtension = extensions.getByType(type = CommonExtension::class)
             configureAndroidProject(commonExtension = commonExtension)
-            configureAndroidLibrary(commonExtension = commonExtension)
+            configureAndroidLibrary(libraryExtension = commonExtension as LibraryExtension)
         }
     }
 

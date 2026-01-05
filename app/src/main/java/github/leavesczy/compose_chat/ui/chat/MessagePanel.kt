@@ -24,7 +24,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Warning
+import androidx.compose.material.icons.outlined.Error
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -175,7 +175,7 @@ private fun OwnMessageContainer(
                 modifier = Modifier
                     .padding(start = 20.dp),
                 horizontalArrangement = Arrangement.spacedBy(
-                    space = 20.dp,
+                    space = 8.dp,
                     alignment = Alignment.End
                 ),
                 verticalAlignment = Alignment.CenterVertically
@@ -234,7 +234,7 @@ private fun FriendMessageContainer(
                 modifier = Modifier
                     .padding(end = 20.dp),
                 horizontalArrangement = Arrangement.spacedBy(
-                    space = 20.dp,
+                    space = 8.dp,
                     alignment = Alignment.Start
                 ),
                 verticalAlignment = Alignment.CenterVertically
@@ -437,7 +437,10 @@ private fun SystemMessage(message: SystemMessage) {
 }
 
 @Composable
-private fun MessageState(modifier: Modifier, messageState: MessageState) {
+private fun MessageState(
+    modifier: Modifier,
+    messageState: MessageState
+) {
     Box(
         modifier = modifier
             .size(size = 20.dp)
@@ -456,7 +459,7 @@ private fun MessageState(modifier: Modifier, messageState: MessageState) {
                 Image(
                     modifier = Modifier
                         .fillMaxSize(),
-                    imageVector = Icons.Outlined.Warning,
+                    imageVector = Icons.Outlined.Error,
                     colorFilter = ColorFilter.tint(color = ComposeChatTheme.colorScheme.c_FFFF545C_FFFA525A.color),
                     contentDescription = null
                 )

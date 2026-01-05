@@ -128,8 +128,8 @@ private fun FriendProfilePage(
     ) { innerPadding ->
         Box(
             modifier = Modifier
-                .fillMaxSize()
                 .padding(paddingValues = innerPadding)
+                .fillMaxSize()
         ) {
             val personProfile = pageViewState.personProfile
             if (personProfile != null) {
