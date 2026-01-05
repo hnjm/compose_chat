@@ -1,6 +1,5 @@
 package github.leavesczy.compose_chat.ui.theme
 
-import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,9 +11,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.BlendMode
+import androidx.compose.ui.draw.drawWithContent
+import androidx.compose.ui.geometry.toRect
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.ColorMatrix
+import androidx.compose.ui.graphics.Paint
+import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.unit.Density
@@ -81,20 +86,26 @@ fun ComposeChatTheme(content: @Composable () -> Unit) {
                         }
 
                         AppTheme.Gray -> {
+                            val colorMatrix = remember {
+                                val colorMatrix = ColorMatrix()
+                                colorMatrix.setToSaturation(0f)
+                                colorMatrix
+                            }
                             Box(
                                 modifier = Modifier
                                     .fillMaxSize()
+                                    .drawWithContent {
+                                        drawIntoCanvas { canvas ->
+                                            val paint = Paint()
+                                            paint.colorFilter = ColorFilter.colorMatrix(colorMatrix)
+                                            canvas.saveLayer(bounds = size.toRect(), paint)
+                                            drawContent()
+                                            canvas.restore()
+                                        }
+                                    },
+                                contentAlignment = Alignment.TopCenter
                             ) {
                                 content()
-                                Canvas(
-                                    modifier = Modifier
-                                        .fillMaxSize()
-                                ) {
-                                    drawRect(
-                                        color = Color.Black,
-                                        blendMode = BlendMode.Saturation
-                                    )
-                                }
                             }
                         }
                     }

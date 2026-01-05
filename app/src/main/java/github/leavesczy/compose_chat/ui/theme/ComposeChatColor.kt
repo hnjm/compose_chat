@@ -66,13 +66,18 @@ data class ComposeChatColorScheme(val darkTheme: Boolean) {
         night = Color(color = 0xFF45464F),
         darkTheme = darkTheme
     )
+    val c_FFFFFFFF_FF45464F = ComposeChatColor(
+        day = Color(color = 0xFFFFFFFF),
+        night = Color(color = 0xFF45464F),
+        darkTheme = darkTheme
+    )
     val c_FF3A3D4D_FFFFFFFF = ComposeChatColor(
         day = Color(color = 0xFF3A3D4D),
         night = Color(color = 0xFFFFFFFF),
         darkTheme = darkTheme
     )
-    val c_4D3A3D4D_B3FFFFFF = ComposeChatColor(
-        day = Color(color = 0x4D3A3D4D),
+    val c_333A3D4D_B3FFFFFF = ComposeChatColor(
+        day = Color(color = 0x333A3D4D),
         night = Color(color = 0xB3FFFFFF),
         darkTheme = darkTheme
     )

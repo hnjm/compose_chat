@@ -105,7 +105,10 @@ class ChatActivity : BaseActivity() {
 }
 
 @Composable
-private fun ChatPage(chatViewModel: ChatViewModel, chatPageAction: ChatPageAction) {
+private fun ChatPage(
+    chatViewModel: ChatViewModel,
+    chatPageAction: ChatPageAction
+) {
     Scaffold(
         modifier = Modifier
             .fillMaxSize(),
@@ -144,8 +147,8 @@ private fun ChatPage(chatViewModel: ChatViewModel, chatPageAction: ChatPageActio
                     .align(alignment = Alignment.TopCenter),
                 isRefreshing = chatViewModel.loadMessageViewState.refreshing,
                 state = pullRefreshState,
-                color = ComposeChatTheme.colorScheme.c_FFFFFFFF_FF101010.color,
-                containerColor = ComposeChatTheme.colorScheme.c_FF42A5F5_FF26A69A.color
+                color = ComposeChatTheme.colorScheme.c_FF5386E5_FF5386E5.color,
+                containerColor = ComposeChatTheme.colorScheme.c_FFFFFFFF_FF45464F.color
             )
         }
     }

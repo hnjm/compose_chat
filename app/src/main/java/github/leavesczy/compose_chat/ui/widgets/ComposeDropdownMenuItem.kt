@@ -26,9 +26,9 @@ internal fun ComposeDropdownMenuItem(
         text = {
             Text(
                 modifier = Modifier
-                    .padding(horizontal = 12.dp, vertical = 12.dp),
+                    .padding(horizontal = 10.dp, vertical = 10.dp),
                 text = text,
-                fontSize = 20.sp,
+                fontSize = 18.sp,
                 lineHeight = 20.sp,
                 fontWeight = FontWeight.Normal,
                 color = ComposeChatTheme.colorScheme.c_FF001018_DEFFFFFF.color

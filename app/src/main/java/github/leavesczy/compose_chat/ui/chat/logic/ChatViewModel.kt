@@ -154,9 +154,7 @@ class ChatViewModel(private val chat: Chat) : BaseViewModel() {
         }
         val currentText = textMessageInputted.text
         val currentSelection = textMessageInputted.selection.end
-        val currentSelectedText = currentText.substring(
-            0, currentSelection
-        )
+        val currentSelectedText = currentText.take(n = currentSelection)
         val messageAppend = currentSelectedText + emoji
         val selectedAppend = messageAppend.length
         textMessageInputted = TextFieldValue(
@@ -249,11 +247,11 @@ class ChatViewModel(private val chat: Chat) : BaseViewModel() {
     }
 
     private fun attachNewMessage(newMessage: Message) {
-        val firstMessage = allMessage.getOrNull(0)
+        val firstMessage = allMessage.getOrNull(index = 0)
         if (firstMessage == null || newMessage.detail.timestamp - firstMessage.detail.timestamp > 60) {
-            allMessage.add(0, TimeMessage(targetMessage = newMessage))
+            allMessage.add(index = 0, element = TimeMessage(targetMessage = newMessage))
         }
-        allMessage.add(0, newMessage)
+        allMessage.add(index = 0, element = newMessage)
         chatPageViewState = chatPageViewState.copy(messageList = allMessage.toPersistentList())
         viewModelScope.launch {
             delay(timeMillis = 80)

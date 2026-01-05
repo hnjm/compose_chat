@@ -245,7 +245,8 @@ private fun GroupHeader(groupProfile: GroupProfile) {
                 .statusBarsPadding()
                 .padding(top = 40.dp)
                 .fillMaxWidth(),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Top
         ) {
             AnimateBouncyImage(
                 modifier = Modifier

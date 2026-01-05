@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyItemScope
+import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -54,12 +55,10 @@ fun ConversationPage(pageViewState: ConversationPageViewState) {
         state = pageViewState.listState,
         contentPadding = PaddingValues(bottom = 30.dp)
     ) {
-        item(
-            key = "ServerConnectState",
-            contentType = "ServerConnectState"
-        ) {
-            ServerConnectState(serverConnectState = pageViewState.serverConnectState)
-        }
+        serverConnectState(
+            modifier = Modifier,
+            serverConnectState = pageViewState.serverConnectState
+        )
         val conversationList = pageViewState.conversationList
         if (conversationList.isEmpty()) {
             item(
@@ -287,8 +286,10 @@ private fun MoreActionDropdownMenu(
     }
 }
 
-@Composable
-private fun ServerConnectState(serverConnectState: ServerConnectState) {
+private fun LazyListScope.serverConnectState(
+    modifier: Modifier,
+    serverConnectState: ServerConnectState
+) {
     when (serverConnectState) {
         ServerConnectState.Idle,
         ServerConnectState.Connected -> {
@@ -300,19 +301,25 @@ private fun ServerConnectState(serverConnectState: ServerConnectState) {
         ServerConnectState.ConnectFailed,
         ServerConnectState.UserSigExpired,
         ServerConnectState.KickedOffline -> {
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .background(color = ComposeChatTheme.colorScheme.c_66CCCCCC_66CCCCCC.color)
+            item(
+                key = "serverConnectState",
+                contentType = "serverConnectState"
             ) {
-                Text(
-                    modifier = Modifier
-                        .padding(horizontal = 8.dp, vertical = 8.dp),
-                    text = "serverConnectState : $serverConnectState ...",
-                    fontSize = 12.sp,
-                    lineHeight = 12.sp,
-                    color = ComposeChatTheme.colorScheme.c_FF384F60_99FFFFFF.color
-                )
+                Box(
+                    modifier = modifier
+                        .animateItem()
+                        .fillMaxWidth()
+                        .background(color = ComposeChatTheme.colorScheme.c_66CCCCCC_66CCCCCC.color)
+                ) {
+                    Text(
+                        modifier = Modifier
+                            .padding(horizontal = 8.dp, vertical = 8.dp),
+                        text = "serverConnectState : $serverConnectState ...",
+                        fontSize = 12.sp,
+                        lineHeight = 12.sp,
+                        color = ComposeChatTheme.colorScheme.c_FF384F60_99FFFFFF.color
+                    )
+                }
             }
         }
     }
@@ -322,15 +329,18 @@ private fun ServerConnectState(serverConnectState: ServerConnectState) {
 internal fun LazyItemScope.EmptyPage(modifier: Modifier) {
     Box(
         modifier = modifier
-            .fillParentMaxSize(),
+            .animateItem()
+            .fillParentMaxWidth()
+            .fillParentMaxHeight(fraction = 0.85f),
         contentAlignment = Alignment.Center
     ) {
         Text(
             modifier = Modifier,
             text = "Empty",
+            fontSize = 68.sp,
+            lineHeight = 70.sp,
             textAlign = TextAlign.Center,
             fontWeight = FontWeight.Bold,
-            fontSize = 68.sp,
             color = ComposeChatTheme.colorScheme.c_FF001018_DEFFFFFF.color
         )
     }
